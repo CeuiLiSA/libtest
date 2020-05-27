@@ -6,9 +6,8 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.os.Handler;
 
-import org.greenrobot.eventbus.EventBus;
-
 import ceui.lisa.base.BaseActivity;
+import ceui.lisa.base.Common;
 import ceui.lisa.base.Event;
 
 public class MainActivity extends BaseActivity {
@@ -30,7 +29,7 @@ public class MainActivity extends BaseActivity {
                 Event event = new Event();
                 event.setReceiver(TopFragment.class.getSimpleName());
                 event.setContent("希望看到啊");
-                EventBus.getDefault().post(event);
+                Common.sendEvent(event);
             }
         }, 3000L);
     }
