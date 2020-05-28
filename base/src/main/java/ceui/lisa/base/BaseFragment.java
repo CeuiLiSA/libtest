@@ -70,10 +70,10 @@ public abstract class BaseFragment<Layout extends ViewDataBinding> extends Fragm
             bind = DataBindingUtil.inflate(inflater, mLayoutID, container, false);
             if (bind != null) {
                 rootView = bind.getRoot();
-                return rootView;
             } else {
-                return inflater.inflate(mLayoutID, container, false);
+                rootView = inflater.inflate(mLayoutID, container, false);
             }
+            return rootView;
         } else {
             return super.onCreateView(inflater, container, savedInstanceState);
         }
