@@ -3,12 +3,14 @@ package ceui.lisa.libtest;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
 import ceui.lisa.base.BaseActivity;
 import ceui.lisa.base.Common;
 import ceui.lisa.base.Event;
+import ceui.lisa.base.Params;
 
 public class MainActivity extends BaseActivity {
 
@@ -19,17 +21,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, new TopFragment())
-                .commitNow();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Event event = new Event();
-                event.setReceiver(TopFragment.class.getSimpleName());
-                event.setContent("希望看到啊");
-                Common.sendEvent(event);
+                Intent intent = new Intent(mContext, TempActivity.class);
+                intent.putExtra(Params.FRAG_TYPE, "主页");
+                startActivity(intent);
             }
         }, 3000L);
     }

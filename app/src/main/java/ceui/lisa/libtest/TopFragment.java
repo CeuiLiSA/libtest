@@ -14,14 +14,4 @@ public class TopFragment extends BaseFragment<FragmentFuckBinding> {
         mLayoutID = R.layout.fragment_fuck;
     }
 
-    @Override
-    public void onEvent(Event event) {
-        super.onEvent(event);
-        bind.contentText.setText(String.valueOf(event.getContent()));
-    }
-
-    @Override
-    protected boolean eventEnable() {
-        return true;
-    }
 }

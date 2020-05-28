@@ -1,18 +1,22 @@
 package ceui.lisa.base;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<Layout extends ViewDataBinding> extends AppCompatActivity {
 
     protected int mLayoutID = -1;
     protected FragmentActivity mActivity;
     protected Context mContext;
+    protected Layout bind;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -21,14 +25,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         mActivity = this;
         mContext = this;
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            initIntent(intent);
+        }
+
         initLayout();
 
         if (mLayoutID != -1) {
-            setContentView(mLayoutID);
+            bind = DataBindingUtil.setContentView(mActivity, mLayoutID);
         }
 
         initView();
         initData();
+    }
+
+    protected void initIntent(Intent intent){
+
     }
 
     protected void initView() {
