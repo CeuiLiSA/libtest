@@ -26,13 +26,13 @@ public abstract class TActivity extends BaseActivity<ActivityTemplateBinding> {
         }
 
         //Determine what fragment is generated based on fragmentType
-        String fragmentType = intent.getStringExtra(Params.FRAG_TYPE);
+        String name = intent.getStringExtra(Params.FRAG_TYPE);
 
-        if (TextUtils.isEmpty(fragmentType)) {
+        if (TextUtils.isEmpty(name)) {
             return;
         }
 
-        childFragment = createFragment(fragmentType, intent);
+        childFragment = createFragment(name, intent);
         if (childFragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
@@ -41,6 +41,6 @@ public abstract class TActivity extends BaseActivity<ActivityTemplateBinding> {
         }
     }
 
-    public abstract Fragment createFragment(String fragmentType,
+    public abstract Fragment createFragment(String name,
                                             Intent intent);
 }

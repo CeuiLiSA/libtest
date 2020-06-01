@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 public abstract class BaseActivity<Layout extends ViewDataBinding> extends AppCompatActivity {
@@ -27,7 +26,10 @@ public abstract class BaseActivity<Layout extends ViewDataBinding> extends AppCo
 
         Intent intent = getIntent();
         if (intent != null) {
-            initIntent(intent);
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                initBundle(bundle);
+            }
         }
 
         initLayout();
@@ -40,7 +42,7 @@ public abstract class BaseActivity<Layout extends ViewDataBinding> extends AppCo
         initData();
     }
 
-    protected void initIntent(Intent intent){
+    protected void initBundle(Bundle bundle) {
 
     }
 
